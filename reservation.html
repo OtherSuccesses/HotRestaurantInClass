@@ -77,7 +77,34 @@
 	    </footer>
 
 	</div>
+	<script>
+	$("#sumbit").on("click", function(event) {
+		event.preventDefault;
+		var newReservation = {
+			customerName: $('#reserve_name').val().trim(),
+			phoneNumber: $('#reserve_phone').val().trim(),
+			customerEmail: $('#reserve_email').val().trim(),
+			customerID: $('#reserve_uniqueID').val().trim()
+		};
+		console.log("New reservation");
+		$.post("/api/tables", newReservation, function(data) {
+			if(data === true) {
+				console.log("reservation has been submited");
+				$.get("/api/tables", function(data2) {
+					var tableNumber = data2.length;
+					if(tableNumber > 5) {
+						alert("You've been added to the waiting.");
+					} else {
+						alert("Your table is ready.")
+					}
+				})
+			} else {
+				console.log("reservation failed.")
+			}
 
+		})
+	}
+	</script>
 </body>
 </html>
 <!-- The javascript has been deleted this page will not work -->
