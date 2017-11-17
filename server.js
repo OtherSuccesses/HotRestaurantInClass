@@ -42,7 +42,7 @@ app.get("/reservation", function(req, res){
 	res.sendFile(path.join(__dirname, "reservation.html"));
 });
 
-<<<<<<< HEAD
+
 app.get("/api/:tables?", function(req, res){
 	var page = req.params.tableArray;
 	if (page){
