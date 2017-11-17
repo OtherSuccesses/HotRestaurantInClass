@@ -57,6 +57,20 @@ app.get("/api/:tables?", function(req, res){
 	return res.json(tableArray);
 });
 
+app.get("/api/:waitlist?", function(req, res){
+	var page = req.params.tableArray;
+	if (page){
+		console.log(page)
+		for (i = 5; tableArray.length; i++){
+			if (page === tableArray[i]){
+				return res.tableArray[i];
+			}
+		}
+		return res.json("false");
+	}
+	return res.json(tableArray);
+});
+
 app.post("/api/new", function(req, res){
 	var newTable = req.body;
 	console.log(newTable);
