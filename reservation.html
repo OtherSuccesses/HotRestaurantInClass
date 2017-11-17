@@ -17,7 +17,7 @@
 	<div class="container">
 
 		<div class="jumbotron">
-			<h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
+			<h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Sam and Ella's Restaurant</h1>
 			<hr>
 			<h2 class="text-center">Make your reservation</h2>
 			<br>
@@ -60,7 +60,7 @@
 								<input type="text" class="form-control" id="reserve_uniqueID">
 							</div>
 
-							<button type="submit" class="btn btn-primary submit">Submit</button>
+							<button type="submit" class="btn btn-primary submit" id='submit'>Submit</button>
 						</form>
 
 					</div>
@@ -78,33 +78,31 @@
 
 	</div>
 	<script>
-	$("#sumbit").on("click", function(event) {
-		event.preventDefault;
+	$("#submit").on("click", function(event) {
+		console.log("fired");
+		event.preventDefault();
 		var newReservation = {
 			customerName: $('#reserve_name').val().trim(),
 			phoneNumber: $('#reserve_phone').val().trim(),
 			customerEmail: $('#reserve_email').val().trim(),
 			customerID: $('#reserve_uniqueID').val().trim()
 		};
-		console.log("New reservation");
-		$.post("/api/tables", newReservation, function(data) {
-			if(data === true) {
-				console.log("reservation has been submited");
-				$.get("/api/tables", function(data2) {
-					var tableNumber = data2.length;
-					if(tableNumber > 5) {
-						alert("You've been added to the waiting.");
-					} else {
-						alert("Your table is ready.")
-					}
-				})
-			} else {
-				console.log("reservation failed.")
-			}
-
+		console.log(newReservation);
+		$.post("/api/new", newReservation, function() {
+			
+			console.log("reservation has been submited");
+			$.get("/api/tables", function(data2) {
+				var tableNumber = data2.length;
+				if(tableNumber > 5) {
+					alert("You've been added to the waiting.");
+				} else {
+					alert("Your table is ready.")
+				}
+			})
 		})
-	}
+	})
 	</script>
 </body>
 </html>
 <!-- The javascript has been deleted this page will not work -->
+javascript has been deleted this page will not work -->
