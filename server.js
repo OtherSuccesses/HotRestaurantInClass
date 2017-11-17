@@ -41,3 +41,7 @@ app.get("/tables", function(req, res){
 app.get("/reservation", function(req, res){
 	res.sendFile(path.join(__dirname, "reservation.html"));
 });
+
+app.listen(PORT,function(){
+	console.log("App listening on PORT " + PORT);
+})
