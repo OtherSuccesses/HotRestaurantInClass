@@ -63,7 +63,14 @@
 		 $.get("/api/tables", function(data) {
 		 	console.log(data);
 		 	for (var i = 0; i<=4;i++) {
-		 		$('#tableSection').append(data[i]);	
+		 		console.log(data[i])
+
+		 		$('#tableSection').append(JSON.stringify(data[i].customerName) + '<br>');	
+		 	}
+		 	if (data.length>5) {
+		 		for (var i = 5; i< data.length; i++) {
+		 			$('#waitlistSection').append(JSON.stringify(data[i].customerName) + '<br>');
+		 		}
 		 	}
 		 });
 	</script>
