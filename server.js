@@ -43,25 +43,13 @@ app.get("/reservation", function(req, res){
 });
 
 
-app.get("/api/:tables?", function(req, res){
-	var page = req.params.tableArray;
-	if (page){
-		console.log(page)
-		for (i =0; tableArray.length; i++){
-			if (page === tableArray[i]){
-				return res.tableArray[i];
-			}
-		}
-		return res.json("false");
-	}
-	return res.json(tableArray);
+app.get("/api/tables", function(req, res){
+		res.send(tableArray.slice(0,5));
 });
 
 app.get("/api/waitlist", function(req, res){
-	var page = req.params.tableArray;
 	if (tableArray.length > 5){
-		console.log(page)
-		res.send(tableArray.slice(3));
+		res.send(tableArray.slice(4));
 	} else {
 		res.send();
 	}
