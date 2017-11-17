@@ -32,14 +32,24 @@
 
     <footer class="footer">
       <div class="container">
-	        <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
+	        <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a> | People who have had Sam and Ella: <span id='counter'></span></p>
       </div>
     </footer>
 
 	</div>
 
 	<script>
-		$()
+	$(document).ready(function() {
+		$.get("/counter", function(data){
+			console.log("visit registered");
+		$('#counter').append(data);
+	// $.get("/counter", function(data){
+	// 		console.log(data);
+	// 		console.log(typeof data);
+	// 		$('#counter').append(data);
+	// 	});
+	});
+});
 	</script>
 </body>
 </html>
