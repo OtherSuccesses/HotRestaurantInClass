@@ -42,6 +42,7 @@ app.get("/reservation", function(req, res){
 	res.sendFile(path.join(__dirname, "reservation.html"));
 });
 
+<<<<<<< HEAD
 app.get("/api/:tables?", function(req, res){
 	var page = req.params.tableArray;
 	if (page){
@@ -55,3 +56,7 @@ app.get("/api/:tables?", function(req, res){
 	}
 	return res.json(tableArray);
 });
+
+app.listen(PORT,function(){
+	console.log("App listening on PORT " + PORT);
+})
