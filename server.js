@@ -41,3 +41,17 @@ app.get("/tables", function(req, res){
 app.get("/reservation", function(req, res){
 	res.sendFile(path.join(__dirname, "reservation.html"));
 });
+
+app.get("/api/:tables?", function(req, res){
+	var page = req.params.tableArray;
+	if (page){
+		console.log(page)
+		for (i =0; tableArray.length; i++){
+			if (page === tableArray[i]){
+				return res.tableArray[i];
+			}
+		}
+		return res.json("false");
+	}
+	return res.json(tableArray);
+});
