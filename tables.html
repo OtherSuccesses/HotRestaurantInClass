@@ -67,12 +67,9 @@
 
 	</div>
 	<script>
-		var data;
-		$.get("/api/tables", function(data) {
-			// console.log(data);
-
+		$.get("/api/tableData", function(data) {
+			console.log('data from line 71 tables.html',data)
 			for (var i = 0; i<=4;i++) {
-				// console.log(data[i])
 				var button = $('<button>');
 				var remove = $('<button>').text('X').addClass('remove');
 

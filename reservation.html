@@ -79,7 +79,6 @@
 	</div>
 	<script>
 	$("#submit").on("click", function(event) {
-		console.log("fired");
 		event.preventDefault();
 		var newReservation = {
 			customerName: $('#reserve_name').val().trim(),
@@ -87,7 +86,7 @@
 			customerEmail: $('#reserve_email').val().trim(),
 			customerID: $('#reserve_uniqueID').val().trim()
 		};
-		console.log(newReservation);
+		console.log('newReservation from reservation.html line 90',newReservation);
 		$.post("/api/new", newReservation, function() {
 			
 			console.log("reservation has been submited");

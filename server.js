@@ -45,15 +45,21 @@ app.get("/api/:tables?", function(req, res){
 	var page = req.params.tableArray;
 	if (page){
 		// console.log(page)
-		for (i =0; tableArray.length; i++){
+		for (i = 0; i<tableArray.length; i++){
 			if (page === tableArray[i]){
 				return res.tableArray[i];
 			}
 		}
 		return res.json("false");
-
+	}
+});
 app.get("/api/tables", function(req, res){
 		res.send(tableArray.slice(0,5));
+});
+
+app.get("/api/tableData", function(req, res){
+	console.log('tableArray from line 61 server.js',tableArray)
+	res.send(tableArray);
 });
 
 app.get("/api/waitlist", function(req, res){
@@ -74,21 +80,18 @@ app.post("/api/new", function(req, res){
 
 
 app.post("/api/remove", function(req, res){
+
 	var name = req.body.name
 	name = name.substring(0, name.length-1);
 	for (var i = 0; i<tableArray.length; i++) {
 		if (tableArray[i].customerName==name) {
-			// console.log('Item removed from tableArray: \n' + tableArray[i])
 			tableArray.splice(i, 1);
-			
 		}
 	}
-	console.log(tableArray)
+	console.log('tableArray from line 91 server.js',tableArray)
 });
 
-app.listen(PORT,function(){
-	console.log("App listening on PORT " + PORT);
-})
+
 
 
 app.get("/counter", function(req, res){
@@ -96,11 +99,11 @@ app.get("/counter", function(req, res){
 	res.json(counter);
 });
 
-// app.get("/counter", function(req, res){
-// 	res.send(counter);
-// });
+app.get("/counter", function(req, res){
+	res.send(counter);
+});
 
-app.listen(PORT,function(){
+app.listen(PORT, function(){
 	console.log("App listening on PORT " + PORT);
 });
 
