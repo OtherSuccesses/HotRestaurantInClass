@@ -57,6 +57,13 @@ app.get("/api/:tables?", function(req, res){
 	return res.json(tableArray);
 });
 
+app.post("/api/new", function(req, res){
+	var newTable = req.body;
+	console.log(newTable);
+	tableArray.push(newTable);
+	res.json(newTable);
+});
+
 app.listen(PORT,function(){
 	console.log("App listening on PORT " + PORT);
 })
