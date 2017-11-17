@@ -57,18 +57,14 @@ app.get("/api/:tables?", function(req, res){
 	return res.json(tableArray);
 });
 
-app.get("/api/:waitlist?", function(req, res){
+app.get("/api/waitlist", function(req, res){
 	var page = req.params.tableArray;
-	if (page){
+	if (tableArray.length > 5){
 		console.log(page)
-		for (i = 5; tableArray.length; i++){
-			if (page === tableArray[i]){
-				return res.tableArray[i];
-			}
-		}
-		return res.json("false");
+		res.send(tableArray.slice(3));
+	} else {
+		res.send();
 	}
-	return res.json(tableArray);
 });
 
 app.post("/api/new", function(req, res){
