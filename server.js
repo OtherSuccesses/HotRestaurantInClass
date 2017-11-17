@@ -4,6 +4,9 @@ var path = require("path");
 
 //Express set up port etc...
 
+var app = express();
+var PORT = 8080;
+
 //express set up body parser...
 
 //Array of tables
