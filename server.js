@@ -4,11 +4,6 @@ var path = require("path");
 
 //Express set up port etc...
 
-
-var app = express();
-var PORT = 8080;
-
-
 var app = express();
 var PORT = process.env.PORT || 8080;
 
@@ -18,6 +13,9 @@ app.use(bodyParser.json());
 //Array of tables
 var tableArray = [];
 
+
+//counter variable
+var counter = 0;
 //function to determine position in reservation or waitlist
 
 //function to display waitlist
@@ -63,6 +61,11 @@ app.post("/api/new", function(req, res){
 	tableArray.push(newTable);
 	res.json(newTable);
 });
+
+app.post("/counter", function(req, res){
+	counter++;
+	console.log(counter);
+})
 
 app.listen(PORT,function(){
 	console.log("App listening on PORT " + PORT);
