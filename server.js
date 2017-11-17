@@ -19,4 +19,22 @@ var PORT = 8080;
 
 //function to display waitlist
 
+
 //function to display reservations
+
+//paths for html
+app.get("/", function(req, res){
+	res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/index", function(req, res){
+	res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/tables", function(req, res){
+	res.sendFile(path.join(__dirname, "tables.html"));
+});
+
+app.get("/reservation", function(req, res){
+	res.sendFile(path.join(__dirname, "reservation.html"));
+});
