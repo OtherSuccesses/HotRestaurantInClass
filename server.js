@@ -5,10 +5,11 @@ var path = require("path");
 //Express set up port etc...
 
 //express set up body parser...
-
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 //Array of tables
 
-// Array of waitlist
+
 
 //function to determine table or waitlist
 
