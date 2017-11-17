@@ -46,7 +46,7 @@ app.get("/reservation", function(req, res){
 app.get("/api/:tables?", function(req, res){
 	var page = req.params.tableArray;
 	if (page){
-		console.log(page)
+		// console.log(page)
 		for (i =0; tableArray.length; i++){
 			if (page === tableArray[i]){
 				return res.tableArray[i];
@@ -59,11 +59,25 @@ app.get("/api/:tables?", function(req, res){
 
 app.post("/api/new", function(req, res){
 	var newTable = req.body;
-	console.log(newTable);
+	// console.log(newTable);
 	tableArray.push(newTable);
 	res.json(newTable);
+});
+
+app.post("/api/remove", function(req, res){
+	var name = req.body.name
+	name = name.substring(0, name.length-1);
+	for (var i = 0; i<tableArray.length; i++) {
+		if (tableArray[i].customerName==name) {
+			// console.log('Item removed from tableArray: \n' + tableArray[i])
+			tableArray.splice(i, 1);
+			
+		}
+	}
+	console.log(tableArray)
 });
 
 app.listen(PORT,function(){
 	console.log("App listening on PORT " + PORT);
 })
+

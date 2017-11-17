@@ -9,7 +9,14 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+	<style>
+		.remove {
+			background: red;
+			color: white;
+			border: none;
+			margin-left: 5px;
+		}
+	</style>
 </head>
 <body>
 
@@ -60,19 +67,42 @@
 
 	</div>
 	<script>
-		 $.get("/api/tables", function(data) {
-		 	console.log(data);
-		 	for (var i = 0; i<=4;i++) {
-		 		console.log(data[i])
+		var data;
+		$.get("/api/tables", function(data) {
+			// console.log(data);
 
-		 		$('#tableSection').append(JSON.stringify(data[i].customerName) + '<br>');	
-		 	}
-		 	if (data.length>5) {
-		 		for (var i = 5; i< data.length; i++) {
-		 			$('#waitlistSection').append(JSON.stringify(data[i].customerName) + '<br>');
-		 		}
-		 	}
-		 });
+			for (var i = 0; i<=4;i++) {
+				// console.log(data[i])
+				var button = $('<button>');
+				var remove = $('<button>').text('X').addClass('remove');
+
+
+				button.addClass('btn btn-primary');
+				button.text(data[i].customerName).append(remove)
+				$('#tableSection').append(button);	
+			}
+			if (data.length>5) {
+				for (var i = 5; i< data.length; i++) {
+					var button = $('<button>');
+		 		button.addClass('btn btn-primary');
+		 		button.text(data[i].customerName)
+					$('#waitlistSection').append(button);
+				}
+			}
+		});
+
+		$(document).on('click', '.remove', function () {
+			var item = {};
+			item.name = $(this).parent().text();
+			$.post('/api/remove', item,  function () {
+
+			}).done(function(data) {
+		        // console.log(data);
+		       
+		      });
+			// console.log('firing')
+			$(this).parent().remove();
+		})
 	</script>
 </body>
 </html>
